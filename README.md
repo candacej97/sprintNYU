@@ -4,6 +4,9 @@ Get to your class in record time, or make it just in time. This Swift game mimic
 
 ## Prerequisites
 ## Stack
+
+* Swift 5
+
 ## Installation
 ### User
 ### Dev
