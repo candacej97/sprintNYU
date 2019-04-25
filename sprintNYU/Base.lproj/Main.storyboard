@@ -13,7 +13,7 @@
         <!--Menu VC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Menu VC" id="BYZ-38-t0r" customClass="ViewController" customModule="sprintNYU" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Menu VC" id="BYZ-38-t0r" customClass="menuVC" customModule="sprintNYU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -42,6 +42,7 @@
                                     <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="onSettingsBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nzz-eZ-IOT"/>
                                     <segue destination="Xzm-i8-IW7" kind="show" id="9wx-ba-M7j"/>
                                 </connections>
                             </button>
@@ -54,6 +55,7 @@
                                     <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="onStoreBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bih-JS-P5n"/>
                                     <segue destination="TD3-TM-sPh" kind="show" id="ujN-dc-X2k"/>
                                 </connections>
                             </button>
@@ -66,6 +68,7 @@
                                     <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="onPlayBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IsA-E1-jvJ"/>
                                     <segue destination="eLc-qe-LO6" kind="show" id="d1k-8w-DDf"/>
                                 </connections>
                             </button>
@@ -90,6 +93,7 @@
                             <constraint firstItem="mXs-Tg-JyV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="75" id="4WN-p8-eKr"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="AwL-ty-PbF" secondAttribute="bottom" constant="50" id="4WP-fi-Xp4"/>
                             <constraint firstItem="jYg-lj-EKA" firstAttribute="top" secondItem="L55-hJ-gcN" secondAttribute="bottom" constant="25" id="4b4-3d-CGt"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TEh-UN-Qjf" secondAttribute="trailing" constant="305" id="Kti-bA-6br"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jYg-lj-EKA" secondAttribute="trailing" constant="16" id="LZn-Ac-4N4"/>
                             <constraint firstItem="L55-hJ-gcN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="OHP-D6-7fU"/>
                             <constraint firstItem="AwL-ty-PbF" firstAttribute="leading" secondItem="mXs-Tg-JyV" secondAttribute="trailing" constant="102" id="TDQ-6M-Bct"/>
@@ -106,14 +110,23 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="alarmClockSprite" destination="jYg-lj-EKA" id="Goi-gE-uQ1"/>
+                        <outlet property="cashIconImg" destination="Uo5-vP-OJW" id="NgX-wj-3WD"/>
+                        <outlet property="cashLabel" destination="TEh-UN-Qjf" id="46B-Ca-gyo"/>
+                        <outlet property="playBtn" destination="wQz-ti-YJN" id="dmW-ZV-lob"/>
+                        <outlet property="settingsBtn" destination="mXs-Tg-JyV" id="MV3-Jv-aNF"/>
+                        <outlet property="storeBtn" destination="AwL-ty-PbF" id="UCx-oD-Lns"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="137" y="19"/>
         </scene>
         <!--Settings VC-->
         <scene sceneID="5ZZ-B4-5MS">
             <objects>
-                <viewController title="Settings VC" id="Xzm-i8-IW7" sceneMemberID="viewController">
+                <viewController title="Settings VC" id="Xzm-i8-IW7" customClass="settingsVC" customModule="sprintNYU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="J2J-SH-ykK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -134,6 +147,9 @@
                                     <color key="titleColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="onBackBtnPressed:" destination="Xzm-i8-IW7" eventType="touchUpInside" id="Kyd-tl-gRY"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -147,10 +163,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ecb-jL-xG9"/>
                     </view>
+                    <connections>
+                        <outlet property="backBtn" destination="fBf-J9-E3Y" id="1aE-Ep-RnQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XLK-th-5Vq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="951" y="133"/>
+            <point key="canvasLocation" x="950" y="18"/>
         </scene>
         <!--Gameplay VC-->
         <scene sceneID="SGu-qP-d9n">
@@ -170,7 +189,7 @@
         <!--Store VC-->
         <scene sceneID="7LD-fC-jWg">
             <objects>
-                <viewController title="Store VC" id="TD3-TM-sPh" sceneMemberID="viewController">
+                <viewController title="Store VC" id="TD3-TM-sPh" customClass="storeVC" customModule="sprintNYU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="v3v-dC-ZGJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -191,6 +210,9 @@
                                     <color key="titleColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="onBackBtnPressed:" destination="TD3-TM-sPh" eventType="touchUpInside" id="qrU-z7-GhL"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -204,6 +226,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="T2x-Sy-IcF"/>
                     </view>
+                    <connections>
+                        <outlet property="backBtn" destination="qsM-li-Wua" id="jFe-kS-LSq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Utc-es-pz0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
