@@ -72,11 +72,11 @@
 				B288B386226E924100F80754 /* menuVC.swift */,
 				B23FD29922712B6E00FF46DE /* settingsVC.swift */,
 				B23FD29B2271323C00FF46DE /* storeVC.swift */,
-<<<<<<< HEAD
+
 				B288B38D226E924200F80754 /* LaunchScreen.storyboard */,
-=======
+
 				3C3CF075227FC96D008B7D53 /* MyUtils.swift */,
->>>>>>> 0aee303ec5a2f6ca26bb37aa4e3eeb9c21c52855
+
 				B288B388226E924100F80754 /* Main.storyboard */,
 				B288B38B226E924200F80754 /* Assets.xcassets */,
 				B2778B0E2277B7FC00A48860 /* Stuff */,
