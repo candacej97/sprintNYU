@@ -70,10 +70,10 @@
 				B288B386226E924100F80754 /* menuVC.swift */,
 				B23FD29922712B6E00FF46DE /* settingsVC.swift */,
 				B23FD29B2271323C00FF46DE /* storeVC.swift */,
+				B288B38D226E924200F80754 /* LaunchScreen.storyboard */,
 				B288B388226E924100F80754 /* Main.storyboard */,
 				B288B38B226E924200F80754 /* Assets.xcassets */,
 				B2778B0E2277B7FC00A48860 /* Stuff */,
-				B288B38D226E924200F80754 /* LaunchScreen.storyboard */,
 				B288B390226E924200F80754 /* Info.plist */,
 			);
 			path = sprintNYU;
