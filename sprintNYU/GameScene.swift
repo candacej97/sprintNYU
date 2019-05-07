@@ -11,6 +11,9 @@ import SpriteKit
 
 class GameScene: SKScene {
     
+    // connect game view controller to the game scene
+    var viewController: gameVC!
+    
     // create player node
     let player = SKSpriteNode(imageNamed: "back0")
     
@@ -30,6 +33,7 @@ class GameScene: SKScene {
 //    let rightAnim: SKAction
     let defAnim: SKAction
     var count = 0
+    var gameEnded = false
 
     var lastTouchLocation: CGPoint?
     let playerRotateRadiansPerSec:CGFloat = 4.0 * .pi
@@ -168,16 +172,19 @@ class GameScene: SKScene {
             }
         }
         
-        moveBackground()
-        count += 1
-        
+        if !gameEnded {
+            moveBackground()
+            count += 1
+        }
+
         // 1 minute of gameplay
-        if count > 1000 {
+        if count > 500 && !gameEnded {
             // finish game
             // make the pin show up/move toward the player
             movePin()
             
             // determine collision of user and pin
+            checkCollisions()
             
             // stop background scrolling
             
@@ -258,5 +265,25 @@ class GameScene: SKScene {
         }))
         
     }
+    
+    func checkCollisions() {
+        self.enumerateChildNodes(withName: "pin", using: ({
+            
+            (node, error) in
+            let pin = node as! SKSpriteNode
+            if pin.intersects(self.player){
+                self.gameEnded = true
+                self.stopPlayerAnimation()
+                self.viewController.showAlert()
+            }
+            
+        }))
+    }
+    
+    
+//    print("Amount to move: \(amountToMove)")
+    
+    func loseGame(){
         
+    }
 }

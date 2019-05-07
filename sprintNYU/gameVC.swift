@@ -16,6 +16,7 @@ class gameVC: UIViewController {
         super.viewDidLoad()
         
         let scene = GameScene(size: view.bounds.size)
+        scene.viewController = self // allow game scene to be able to access this
         let skView = view as! SKView
         skView.showsFPS = true
         skView.showsNodeCount = true
@@ -39,6 +40,24 @@ class gameVC: UIViewController {
 //            view.showsFPS = true
 //            view.showsNodeCount = true
 //        }
+    }
+    
+    func showAlert() {
+        let alert = UIAlertController(title: "You Won!", message: "You've made it to your class", preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "Play Next Level", style: UIAlertAction.Style.default, handler: { _ in
+            //Cancel Action
+        }))
+        alert.addAction(UIAlertAction(title: "Main Menu",
+                                      style: UIAlertAction.Style.default,
+                                      handler: {
+                                        (_: UIAlertAction!) in
+                                        
+                                        self .dismiss(animated: true, completion: nil)
+
+                                        //Sign out action
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
 
     override var shouldAutorotate: Bool {
