@@ -17,6 +17,9 @@ class GameScene: SKScene {
     // create background node
     let background = SKSpriteNode()
     
+    //create pin node
+    let pin = SKSpriteNode(imageNamed: "pin")
+    
     var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
     let playerMovePointsPerSec: CGFloat = 480.0
@@ -26,6 +29,7 @@ class GameScene: SKScene {
 //    let downAnim: SKAction
 //    let rightAnim: SKAction
     let defAnim: SKAction
+    var count = 0
 
     var lastTouchLocation: CGPoint?
     let playerRotateRadiansPerSec:CGFloat = 4.0 * .pi
@@ -58,17 +62,17 @@ class GameScene: SKScene {
         backgroundColor = SKColor.white //turn into maze
         
         // set up player
-        player.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        player.position = CGPoint(x: 0, y: 0)
+        player.position = CGPoint(x: 0, y: -300)
         player.setScale(0.20)
       
-        // set up background
+        // set up background & pin
         createBackground()
+        createPin()
         
         // add player to SKView
         self.addChild(player)
-
         startPlayerAnimation()
+        
     }
     
     
@@ -164,7 +168,27 @@ class GameScene: SKScene {
             }
         }
         
-            moveBackground()
+        moveBackground()
+        count += 1
+        
+        // 1 minute of gameplay
+        if count > 1000 {
+            // finish game
+            // make the pin show up/move toward the player
+            movePin()
+            
+            // determine collision of user and pin
+            
+            // stop background scrolling
+            
+            // stop pin scrolling
+            
+            // stop player animation
+            
+            // show endgame card
+            
+        }
+        
         
     }
     
@@ -199,6 +223,35 @@ class GameScene: SKScene {
         self.enumerateChildNodes(withName: "background", using: ({
             (node, error) in
             node.position.y -= 2
+            if node.position.y < -(self.scene?.size.height)! {
+                node.position.y += (self.scene?.size.height)! * 3
+            }
+        }))
+        
+    }
+    
+    func createPin() {
+        
+            let pin = SKSpriteNode(imageNamed: "pin")
+            pin.name = "pin"
+            pin.position = CGPoint(x: 150, y: 400)
+            pin.setScale(0.60)
+            pin.isHidden = true
+        
+            self.addChild(pin)
+    
+    }
+    
+    func movePin() {
+        
+        self.enumerateChildNodes(withName: "pin", using: ({
+            
+            (node, error) in
+            
+            node.isHidden = false
+            
+            node.position.y -= 2
+            
             if node.position.y < -(self.scene?.size.height)! {
                 node.position.y += (self.scene?.size.height)! * 3
             }
