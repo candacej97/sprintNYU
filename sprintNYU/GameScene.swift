@@ -15,7 +15,6 @@ class GameScene: SKScene {
     let player = SKSpriteNode(imageNamed: "back0")
     
     // create background node
-//    let background = SKSpriteNode(imageNamed: "bg")
     let background = SKSpriteNode()
     
     var lastUpdateTime: TimeInterval = 0
@@ -32,7 +31,7 @@ class GameScene: SKScene {
     let playerRotateRadiansPerSec:CGFloat = 4.0 * .pi
     
     override init(size: CGSize) {
-        let maxAspectRatio:CGFloat = 16.0/9.0 // 1
+        let maxAspectRatio: CGFloat = 16.0/9.0 // 1
         let playableHeight = size.width / maxAspectRatio // 2
         let playableMargin = (size.height-playableHeight)/2.0 // 3
         playableRect = CGRect(x: 0, y: playableMargin,
@@ -46,7 +45,6 @@ class GameScene: SKScene {
         defAnim = SKAction.repeatForever(SKAction.animate(with: textures, timePerFrame: 0.1))
         
         super.init(size: size) // 5
-        
         
     }
     
@@ -128,6 +126,9 @@ class GameScene: SKScene {
         velocity = CGPoint(x: direction.x * playerMovePointsPerSec,
                            y: direction.y * playerMovePointsPerSec)
         
+        // keep player moving forward
+        startPlayerAnimation()
+        
     }
     
     func startPlayerAnimation() {
@@ -157,7 +158,6 @@ class GameScene: SKScene {
             let diff = lastTouch - player.position
             if (diff.length() <= playerMovePointsPerSec * CGFloat(dt)) {
                 player.position = lastTouchLocation!
-                stopPlayerAnimation()
                 velocity = CGPoint.zero
             } else {
                 moveSprite(player, velocity: velocity)
@@ -182,12 +182,12 @@ class GameScene: SKScene {
     func createBackground() {
         for i in 0...3 {
             
-            let bkg = SKSpriteNode(imageNamed: "bg")
+            let bkg = SKSpriteNode(imageNamed: "newer_bg")
             bkg.name = "background"
-            bkg.size = CGSize(width: ((self.scene?.size.width)!), height: 800)
+            bkg.size = CGSize(width: (3.25*(self.scene?.size.width)!), height: 2600)
             bkg.zPosition = -1000
-            bkg.anchorPoint = CGPoint(x: 0, y: 1)
-            bkg.position = CGPoint(x: -(self.frame.size.width/2), y: CGFloat(i) * bkg.size.height)
+            bkg.anchorPoint = CGPoint(x: 0.25, y: 1)
+            bkg.position = CGPoint(x: -(1.75*self.frame.size.width), y: CGFloat(i) * bkg.size.height)
 
             self.addChild(bkg)
         
