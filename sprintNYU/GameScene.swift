@@ -23,6 +23,9 @@ class GameScene: SKScene {
     //create pin node
     let pin = SKSpriteNode(imageNamed: "pin")
     
+    //create car node
+    let car = SKSpriteNode(imageNamed: "car")
+    
     var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
     let playerMovePointsPerSec: CGFloat = 480.0
@@ -76,6 +79,11 @@ class GameScene: SKScene {
         // add player to SKView
         self.addChild(player)
         startPlayerAnimation()
+        
+        if !gameEnded {
+            run(SKAction.repeatForever( SKAction.sequence([SKAction.run(driveCars),
+                                                           SKAction.wait(forDuration: 5.0)])))
+        }
         
     }
     
@@ -176,6 +184,9 @@ class GameScene: SKScene {
             moveBackground()
             count += 1
         }
+        
+        checkCollisions()
+
 
         // 1 minute of gameplay
         if count > 500 && !gameEnded {
@@ -184,15 +195,7 @@ class GameScene: SKScene {
             movePin()
             
             // determine collision of user and pin
-            checkCollisions()
-            
-            // stop background scrolling
-            
-            // stop pin scrolling
-            
-            // stop player animation
-            
-            // show endgame card
+//            checkCollisions()
             
         }
         
@@ -266,6 +269,34 @@ class GameScene: SKScene {
         
     }
     
+    func driveCars() {
+        
+        
+        let car = SKSpriteNode(imageNamed: "car")
+        car.name = "car"
+        car.position = CGPoint(
+            x: CGFloat.random(min: -80, max: 100),
+            y: (size.height + car.size.height/2)*2)
+        print(car.position)
+        car.setScale(0.5)
+        car.zPosition = 15
+        
+        addChild(car)
+        
+        let gothere = CGPoint(
+            x: car.position.x,
+            y: -(car.size.height*4))
+        //or:   y:CGRectGetMaxY(playableRect))
+        print(gothere)
+        let actionMove =
+            // or move only in X:
+            //   SKAction.moveToX(-can.size.width/2, duration: 4.0)
+            SKAction.move(to: gothere, duration: 3.0)
+        let actionRemove = SKAction.removeFromParent()
+        car.run(SKAction.sequence([actionMove, actionRemove]))
+        
+    }
+    
     func checkCollisions() {
         self.enumerateChildNodes(withName: "pin", using: ({
             
@@ -274,7 +305,19 @@ class GameScene: SKScene {
             if pin.intersects(self.player){
                 self.gameEnded = true
                 self.stopPlayerAnimation()
-                self.viewController.showAlert()
+                self.viewController.showWinAlert()
+            }
+            
+        }))
+        
+        self.enumerateChildNodes(withName: "car", using: ({
+            
+            (node, error) in
+            let car = node as! SKSpriteNode
+            if car.intersects(self.player){
+                self.gameEnded = true
+                self.stopPlayerAnimation()
+                self.viewController.showLoseAlert()
             }
             
         }))

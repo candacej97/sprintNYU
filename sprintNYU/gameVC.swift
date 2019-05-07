@@ -42,8 +42,8 @@ class gameVC: UIViewController {
 //        }
     }
     
-    func showAlert() {
-        let alert = UIAlertController(title: "You Won!", message: "You've made it to your class", preferredStyle: UIAlertController.Style.alert)
+    func showWinAlert() {
+        let alert = UIAlertController(title: "You Won!", message: "You've made it to your class!", preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(title: "Play Next Level", style: UIAlertAction.Style.default, handler: { _ in
             //Cancel Action
@@ -55,6 +55,24 @@ class gameVC: UIViewController {
                                         
                                         self .dismiss(animated: true, completion: nil)
 
+                                        //Sign out action
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showLoseAlert() {
+        let alert = UIAlertController(title: "Yikesss 🙃", message: "You've been hit by a car.", preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "Start Over", style: UIAlertAction.Style.default, handler: { _ in
+            //Cancel Action
+        }))
+        alert.addAction(UIAlertAction(title: "Main Menu",
+                                      style: UIAlertAction.Style.default,
+                                      handler: {
+                                        (_: UIAlertAction!) in
+                                        
+                                        self .dismiss(animated: true, completion: nil)
+                                        
                                         //Sign out action
         }))
         self.present(alert, animated: true, completion: nil)
