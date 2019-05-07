@@ -11,7 +11,12 @@ import SpriteKit
 
 class GameScene: SKScene {
     
+    // create player node
     let player = SKSpriteNode(imageNamed: "back0")
+    
+    // create background node
+//    let background = SKSpriteNode(imageNamed: "bg")
+    let background = SKSpriteNode()
     
     var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
@@ -53,13 +58,18 @@ class GameScene: SKScene {
         /* Setup scene here */
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         backgroundColor = SKColor.white //turn into maze
-
+        
+        // set up player
         player.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         player.position = CGPoint(x: 0, y: 0)
-        player.setScale(0.50)
-
-        self.addChild(player)
+        player.setScale(0.20)
+      
+        // set up background
+        createBackground()
         
+        // add player to SKView
+        self.addChild(player)
+
         startPlayerAnimation()
     }
     
@@ -140,6 +150,7 @@ class GameScene: SKScene {
         } else {
             dt = 0
         }
+        
         lastUpdateTime = currentTime
         
         if let lastTouch = lastTouchLocation {
@@ -152,6 +163,9 @@ class GameScene: SKScene {
                 moveSprite(player, velocity: velocity)
             }
         }
+        
+            moveBackground()
+        
     }
     
     func moveSprite(_ sprite: SKSpriteNode, velocity: CGPoint) {
@@ -163,6 +177,33 @@ class GameScene: SKScene {
         sprite.position = CGPoint(
            x: sprite.position.x + amountToMove.x,
            y: sprite.position.y + amountToMove.y)
+    }
+    
+    func createBackground() {
+        for i in 0...3 {
+            
+            let bkg = SKSpriteNode(imageNamed: "bg")
+            bkg.name = "background"
+            bkg.size = CGSize(width: ((self.scene?.size.width)!), height: 800)
+            bkg.zPosition = -1000
+            bkg.anchorPoint = CGPoint(x: 0, y: 1)
+            bkg.position = CGPoint(x: -(self.frame.size.width/2), y: CGFloat(i) * bkg.size.height)
+
+            self.addChild(bkg)
+        
+        }
+    }
+    
+    func moveBackground() {
+        
+        self.enumerateChildNodes(withName: "background", using: ({
+            (node, error) in
+            node.position.y -= 2
+            if node.position.y < -(self.scene?.size.height)! {
+                node.position.y += (self.scene?.size.height)! * 3
+            }
+        }))
+        
     }
         
 }
