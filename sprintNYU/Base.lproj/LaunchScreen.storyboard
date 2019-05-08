@@ -19,23 +19,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sprintNYU" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adD-sk-0rf">
-                                <rect key="frame" x="16" y="563.5" width="343" height="53.5"/>
+                                <rect key="frame" x="16" y="563" width="343" height="54"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="42"/>
                                 <color key="textColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
                                 <size key="shadowOffset" width="0.0" height="3"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="clock-red_1" translatesAutoresizingMaskIntoConstraints="NO" id="mbL-mb-HTs">
-                                <rect key="frame" x="16" y="120" width="343" height="344"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock-red_1" translatesAutoresizingMaskIntoConstraints="NO" id="mbL-mb-HTs">
+                                <rect key="frame" x="16" y="161.5" width="343" height="344"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="344" id="Ppy-io-SOA"/>
+                                    <constraint firstAttribute="width" constant="343" id="QWW-cW-8LC"/>
+                                    <constraint firstAttribute="width" secondItem="mbL-mb-HTs" secondAttribute="height" multiplier="343:344" id="i0K-xW-Edu"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="adD-sk-0rf" secondAttribute="trailing" constant="16" id="47b-Mi-TT4"/>
+                            <constraint firstItem="mbL-mb-HTs" firstAttribute="leading" secondItem="adD-sk-0rf" secondAttribute="leading" id="CZB-co-Dge"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="adD-sk-0rf" secondAttribute="bottom" constant="50" id="P87-eg-Xif"/>
                             <constraint firstItem="adD-sk-0rf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="QQ6-yX-nkl"/>
+                            <constraint firstItem="mbL-mb-HTs" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="UOh-Xh-3XL"/>
+                            <constraint firstItem="mbL-mb-HTs" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Z3X-io-BUe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
