@@ -45,36 +45,42 @@ class gameVC: UIViewController {
     func showWinAlert() {
         let alert = UIAlertController(title: "You Won!", message: "You've made it to your class!", preferredStyle: UIAlertController.Style.alert)
         
-        alert.addAction(UIAlertAction(title: "Play Next Level", style: UIAlertAction.Style.default, handler: { _ in
-            //Cancel Action
+        alert.addAction(UIAlertAction(title: "Play Next Level",
+                                      style: UIAlertAction.Style.default,
+                                      handler: {
+                                        _ in
+                                        // play the next level... currently replays the level
+                                        self.viewDidLoad()
         }))
         alert.addAction(UIAlertAction(title: "Main Menu",
                                       style: UIAlertAction.Style.default,
                                       handler: {
                                         (_: UIAlertAction!) in
-                                        
+                                        // exit to the main menu
                                         self .dismiss(animated: true, completion: nil)
-
-                                        //Sign out action
         }))
+        
         self.present(alert, animated: true, completion: nil)
     }
     
     func showLoseAlert() {
         let alert = UIAlertController(title: "Yikesss 🙃", message: "You've been hit by a car.", preferredStyle: UIAlertController.Style.alert)
         
-        alert.addAction(UIAlertAction(title: "Start Over", style: UIAlertAction.Style.default, handler: { _ in
-            //Cancel Action
+        alert.addAction(UIAlertAction(title: "Start Over",
+                                      style: UIAlertAction.Style.default,
+                                      handler: {
+                                        _ in
+                                        // Start Over the game
+                                        self.viewDidLoad()
         }))
         alert.addAction(UIAlertAction(title: "Main Menu",
                                       style: UIAlertAction.Style.default,
                                       handler: {
                                         (_: UIAlertAction!) in
-                                        
+                                        // exit to the main menu
                                         self .dismiss(animated: true, completion: nil)
-                                        
-                                        //Sign out action
         }))
+        
         self.present(alert, animated: true, completion: nil)
     }
 

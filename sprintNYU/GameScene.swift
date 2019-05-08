@@ -184,9 +184,6 @@ class GameScene: SKScene {
             moveBackground()
             count += 1
         }
-        
-        checkCollisions()
-
 
         // 1 minute of gameplay
         if count > 500 && !gameEnded {
@@ -194,11 +191,10 @@ class GameScene: SKScene {
             // make the pin show up/move toward the player
             movePin()
             
-            // determine collision of user and pin
-//            checkCollisions()
-            
         }
         
+        // determine collision of user and pin
+        checkCollisions()
         
     }
     

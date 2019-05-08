@@ -72,15 +72,15 @@
                                     <segue destination="eLc-qe-LO6" kind="show" id="d1k-8w-DDf"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Uo5-vP-OJW">
-                                <rect key="frame" x="16" y="25" width="32" height="32"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="coins - 5x" translatesAutoresizingMaskIntoConstraints="NO" id="Uo5-vP-OJW">
+                                <rect key="frame" x="16" y="25" width="42" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="DHj-Z8-8LY"/>
                                     <constraint firstAttribute="width" constant="32" id="MTc-JH-GD7"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TEh-UN-Qjf">
-                                <rect key="frame" x="56" y="29" width="14" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TEh-UN-Qjf">
+                                <rect key="frame" x="62" y="31" width="14" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -121,7 +121,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137" y="19"/>
+            <point key="canvasLocation" x="136.80000000000001" y="18.440779610194905"/>
         </scene>
         <!--Settings VC-->
         <scene sceneID="5ZZ-B4-5MS">
@@ -486,4 +486,7 @@
             <point key="canvasLocation" x="949.60000000000002" y="833.43328335832086"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="coins - 5x" width="72.5" height="66"/>
+    </resources>
 </document>

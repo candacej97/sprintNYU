@@ -17,10 +17,16 @@ class menuVC: UIViewController {
     @IBOutlet weak var cashIconImg: UIImageView!
     @IBOutlet weak var alarmClockSprite: SKView!
     
+    // create player node
+//    self.alarmClockSprite = SKSpriteNode(imageNamed: "clock-red_1")
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // Do any additional setup after loading the view
+        
+        // create sprite for the alarm clock
+        
     }
 
     @IBAction func onSettingsBtnPressed(_ sender: Any) {
