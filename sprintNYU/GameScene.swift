@@ -80,9 +80,10 @@ class GameScene: SKScene {
         self.addChild(player)
         startPlayerAnimation()
         
+        // if the game hasn't ended keep running the car obstacle, and randomize it between 5 and 20 seconds
         if !gameEnded {
             run(SKAction.repeatForever( SKAction.sequence([SKAction.run(driveCars),
-                                                           SKAction.wait(forDuration: 5.0)])))
+                                                           SKAction.wait(forDuration: Double.random(in: 5.0 ..< 20.0))])))
         }
         
     }
@@ -180,12 +181,15 @@ class GameScene: SKScene {
             }
         }
         
+        // if the game hasn't ended keep moving the background
         if !gameEnded {
             moveBackground()
             count += 1
         }
 
+        
         // 1 minute of gameplay
+        // after 1 min of gameplay (without being hit by a car) we show the pin of the destination, this timing will vary based on other factors: obstacles, boostups, level
         if count > 500 && !gameEnded {
             // finish game
             // make the pin show up/move toward the player
@@ -267,7 +271,6 @@ class GameScene: SKScene {
     
     func driveCars() {
         
-        
         let car = SKSpriteNode(imageNamed: "car")
         car.name = "car"
         car.position = CGPoint(
@@ -319,10 +322,4 @@ class GameScene: SKScene {
         }))
     }
     
-    
-//    print("Amount to move: \(amountToMove)")
-    
-    func loseGame(){
-        
-    }
 }
