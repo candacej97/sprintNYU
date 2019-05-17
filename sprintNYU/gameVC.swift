@@ -12,6 +12,8 @@ import GameplayKit
 
 class gameVC: UIViewController {
     
+    var level = 1;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,24 +29,42 @@ class gameVC: UIViewController {
     }
     
     func showWinAlert() {
-        let alert = UIAlertController(title: "You Won!", message: "You've made it to your class!", preferredStyle: UIAlertController.Style.alert)
-        
-        alert.addAction(UIAlertAction(title: "Play Next Level",
-                                      style: UIAlertAction.Style.default,
-                                      handler: {
-                                        _ in
-                                        // play the next level... currently replays the level
-                                        self.viewDidLoad()
-        }))
-        alert.addAction(UIAlertAction(title: "Main Menu",
-                                      style: UIAlertAction.Style.default,
-                                      handler: {
-                                        (_: UIAlertAction!) in
-                                        // exit to the main menu
-                                        self .dismiss(animated: true, completion: nil)
-        }))
-        
-        self.present(alert, animated: true, completion: nil)
+        if level == 3 {
+            let alert = UIAlertController(title: "You Won!", message: "You've made it to class on the entire semester!", preferredStyle: UIAlertController.Style.alert)
+            
+            alert.addAction(UIAlertAction(title: "Main Menu",
+                                          style: UIAlertAction.Style.default,
+                                          handler: {
+                                            (_: UIAlertAction!) in
+                                            // exit to the main menu
+                                            self .dismiss(animated: true, completion: nil)
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+        else {
+            let alert = UIAlertController(title: "You Won!", message: "You've made it to your class!", preferredStyle: UIAlertController.Style.alert)
+
+            alert.addAction(UIAlertAction(title: "Play Next Level",
+                                          style: UIAlertAction.Style.default,
+                                          handler: {
+                                            _ in
+                                            // play the next level
+                                            self.level+=1
+                                            self.viewDidLoad()
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Main Menu",
+                                          style: UIAlertAction.Style.default,
+                                          handler: {
+                                            (_: UIAlertAction!) in
+                                            // exit to the main menu
+                                            self .dismiss(animated: true, completion: nil)
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
+
+        }
     }
     
     func showLoseAlert() {

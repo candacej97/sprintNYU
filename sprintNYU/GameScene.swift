@@ -83,7 +83,7 @@ class GameScene: SKScene {
         // if the game hasn't ended keep running the car obstacle, and randomize it between 5 and 20 seconds
         if !gameEnded {
             run(SKAction.repeatForever( SKAction.sequence([SKAction.run(driveCars),
-                                                           SKAction.wait(forDuration: Double.random(in: 5.0 ..< 20.0))])))
+                                                           SKAction.wait(forDuration: Double.random(in: 5.0 ..< 10.0))])))
         }
         
     }
@@ -287,10 +287,7 @@ class GameScene: SKScene {
             y: -(car.size.height*4))
         //or:   y:CGRectGetMaxY(playableRect))
         print(gothere)
-        let actionMove =
-            // or move only in X:
-            //   SKAction.moveToX(-can.size.width/2, duration: 4.0)
-            SKAction.move(to: gothere, duration: 3.0)
+        let actionMove = SKAction.move(to: gothere, duration: 3.0)
         let actionRemove = SKAction.removeFromParent()
         car.run(SKAction.sequence([actionMove, actionRemove]))
         
