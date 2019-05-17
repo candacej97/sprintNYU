@@ -12,8 +12,6 @@ class menuVC: UIViewController {
 
     @IBOutlet weak var settingsBtn: UIButton!
     @IBOutlet weak var playBtn: UIButton!
-    @IBOutlet weak var cashLabel: UILabel!
-    @IBOutlet weak var cashIconImg: UIImageView!
     @IBOutlet weak var alarmClockSprite: SKView!
     
     override func viewDidLoad() {

@@ -26,6 +26,9 @@ class GameScene: SKScene {
     //create car node
     let car = SKSpriteNode(imageNamed: "car")
     
+    //create car node
+    let drink = SKSpriteNode(imageNamed: "drink")
+    
     var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
     let playerMovePointsPerSec: CGFloat = 480.0
@@ -38,6 +41,7 @@ class GameScene: SKScene {
     var cycles = 0
     var maxCycles = 1000
     var gameEnded = false
+    var playerSpeed = 1
 
     var lastTouchLocation: CGPoint?
     let playerRotateRadiansPerSec:CGFloat = 4.0 * .pi
@@ -87,6 +91,7 @@ class GameScene: SKScene {
         // set up background & pin
         createBackground()
         createPin()
+        createBoostUp()
         
         // add player to SKView
         self.addChild(player)
@@ -94,8 +99,9 @@ class GameScene: SKScene {
         
         // if the game hasn't ended keep running the car obstacle, and randomize it between 5 and 20 seconds
         if !gameEnded {
-            run(SKAction.repeatForever( SKAction.sequence([SKAction.run(driveCars),
-                                                           SKAction.wait(forDuration: Double.random(in: 5.0 ..< 10.0))])))
+            run(SKAction.repeatForever( SKAction.sequence([SKAction.run(driveCars), SKAction.wait(forDuration: Double.random(in: 5.0 ..< 10.0))])))
+            
+//            run(SKAction.repeatForever( SKAction.sequence([SKAction.run(moveBoostUp), SKAction.wait(forDuration: Double.random(in: 10.0 ..< 20.0))])))
         }
         
     }
@@ -197,6 +203,8 @@ class GameScene: SKScene {
         if !gameEnded {
             moveBackground()
             cycles += 1
+            
+            run(SKAction.repeatForever( SKAction.sequence([SKAction.run(moveBoostUp), SKAction.wait(forDuration: Double.random(in: 10.0 ..< 20.0))])))
         }
 
         
@@ -267,11 +275,8 @@ class GameScene: SKScene {
         self.enumerateChildNodes(withName: "pin", using: ({
             
             (node, error) in
-            
             node.isHidden = false
-            
             node.position.y -= 2
-            
             if node.position.y < -(self.scene?.size.height)! {
                 node.position.y += (self.scene?.size.height)! * 3
             }
@@ -286,7 +291,6 @@ class GameScene: SKScene {
         car.position = CGPoint(
             x: CGFloat.random(min: -80, max: 100),
             y: (size.height + car.size.height/2)*2)
-        print(car.position)
         car.setScale(0.5)
         car.zPosition = 15
         
@@ -295,15 +299,49 @@ class GameScene: SKScene {
         let gothere = CGPoint(
             x: car.position.x,
             y: -(car.size.height*4))
-        //or:   y:CGRectGetMaxY(playableRect))
-        print(gothere)
         let actionMove = SKAction.move(to: gothere, duration: 3.0)
         let actionRemove = SKAction.removeFromParent()
         car.run(SKAction.sequence([actionMove, actionRemove]))
         
     }
     
+    func createBoostUp() {
+        
+        let drink = SKSpriteNode(imageNamed: "drink")
+        drink.name = "drink"
+        drink.position = CGPoint(x: CGFloat.random(min: self.frame.minX, max: self.frame.maxX), y: 400)
+        drink.setScale(0.60)
+        drink.isHidden = true
+        
+        self.addChild(drink)
+        
+    }
+    
+    func moveBoostUp() {
+        self.enumerateChildNodes(withName: "drink", using: ({
+            (node, error) in
+            node.isHidden = false
+            node.position.y -= 2
+            if node.position.y < -(self.scene?.size.height)! {
+                node.position.y += (self.scene?.size.height)! * 3
+            }
+        }))
+    }
+    
+    
     func checkCollisions() {
+        
+        self.enumerateChildNodes(withName: "drink", using: ({
+            
+            (node, error) in
+            let drink = node as! SKSpriteNode
+            if drink.intersects(self.player){
+                print("player speed increases")
+                self.playerSpeed = Int(Double.random(in: 2.0 ..< 5.0))
+            }
+            
+        }))
+        
         self.enumerateChildNodes(withName: "pin", using: ({
             
             (node, error) in
@@ -311,7 +349,12 @@ class GameScene: SKScene {
             if pin.intersects(self.player){
                 self.gameEnded = true
                 self.stopPlayerAnimation()
-                self.viewController.showWinAlert()
+                
+                if self.viewController.getLevel() == 3 {
+                    self.viewController.showGameWinningAlert()
+                } else {
+                    self.viewController.showWinAlert()
+                }
             }
             
         }))
