@@ -12,8 +12,6 @@ import GameplayKit
 
 class gameVC: UIViewController {
     
-    var level = 1;
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,6 +25,8 @@ class gameVC: UIViewController {
         skView.presentScene(scene)
 
     }
+    
+    var level = 1;
     
     func showWinAlert() {
         if level == 3 {
@@ -96,5 +96,8 @@ class gameVC: UIViewController {
         return true
     }
     
+    func getLevel() -> Int {
+        return level
+    }
     
 }

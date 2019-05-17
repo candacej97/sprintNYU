@@ -35,7 +35,8 @@ class GameScene: SKScene {
 //    let downAnim: SKAction
 //    let rightAnim: SKAction
     let defAnim: SKAction
-    var count = 0
+    var cycles = 0
+    var maxCycles = 1000
     var gameEnded = false
 
     var lastTouchLocation: CGPoint?
@@ -56,6 +57,17 @@ class GameScene: SKScene {
         defAnim = SKAction.repeatForever(SKAction.animate(with: textures, timePerFrame: 0.1))
         
         super.init(size: size) // 5
+        
+        // change cycle length depending on the level
+        self.enumerateChildNodes(withName: "car", using: ({
+            
+            (node, error) in
+            
+            // change cycle length depending on the level
+            if self.maxCycles != (1000 % self.viewController.getLevel()){
+                self.maxCycles %= self.viewController.getLevel()
+            }
+        }))
         
     }
     
@@ -184,15 +196,14 @@ class GameScene: SKScene {
         // if the game hasn't ended keep moving the background
         if !gameEnded {
             moveBackground()
-            count += 1
+            cycles += 1
         }
 
         
-        // 1 minute of gameplay
-        // after 1 min of gameplay (without being hit by a car) we show the pin of the destination, this timing will vary based on other factors: obstacles, boostups, level
-        if count > 500 && !gameEnded {
+        // after maxCycles has become equal to the number of cycles of gameplay (without being hit by a car) we show the pin of the destination, this timing will vary based on other factors: obstacles, boostups, level
+        if cycles >= maxCycles && !gameEnded {
             // finish game
-            // make the pin show up/move toward the player
+            // make the pin show up & move toward the player
             movePin()
             
         }
@@ -206,7 +217,6 @@ class GameScene: SKScene {
         // 1
         let amountToMove = CGPoint(x: velocity.x * CGFloat(dt),
                                    y: velocity.y * CGFloat(dt))
-        print("Amount to move: \(amountToMove)")
         
         sprite.position = CGPoint(
            x: sprite.position.x + amountToMove.x,
