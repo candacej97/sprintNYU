@@ -110,14 +110,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hF3-f4-FeQ">
-                                <rect key="frame" x="137" y="123" width="101" height="100"/>
+                                <rect key="frame" x="150" y="123" width="75" height="75"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" button="YES" image="YES"/>
                                 </accessibility>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="F3A-Nd-Pyu"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="Ivf-ur-M2D"/>
-                                    <constraint firstAttribute="height" constant="100" id="pZy-cg-4Vd"/>
+                                    <constraint firstAttribute="width" constant="75" id="Ivf-ur-M2D"/>
+                                    <constraint firstAttribute="height" constant="75" id="pZy-cg-4Vd"/>
                                 </constraints>
                                 <state key="normal" title="musicBtn" image="music"/>
                                 <connections>
@@ -125,11 +124,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2eQ-yo-osF">
-                                <rect key="frame" x="137.5" y="273" width="100" height="75"/>
+                                <rect key="frame" x="150" y="248" width="75" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="51C-kd-qOK"/>
-                                    <constraint firstAttribute="width" constant="100" id="l8f-Vm-LMB"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="75" id="nd2-xD-6XY"/>
+                                    <constraint firstAttribute="width" constant="75" id="l8f-Vm-LMB"/>
                                 </constraints>
                                 <state key="normal" title="soundBtn" image="sound"/>
                                 <connections>
@@ -142,7 +140,6 @@
                             <constraint firstItem="hF3-f4-FeQ" firstAttribute="top" secondItem="J2J-SH-ykK" secondAttribute="top" constant="123" id="9ke-F8-dyX"/>
                             <constraint firstItem="2eQ-yo-osF" firstAttribute="top" secondItem="hF3-f4-FeQ" secondAttribute="bottom" constant="50" id="9v0-Pi-Dzh"/>
                             <constraint firstItem="2eQ-yo-osF" firstAttribute="centerX" secondItem="J2J-SH-ykK" secondAttribute="centerX" id="C62-b8-3HK"/>
-                            <constraint firstItem="hF3-f4-FeQ" firstAttribute="leading" secondItem="ecb-jL-xG9" secondAttribute="leading" constant="137" id="bYm-xx-Mof"/>
                             <constraint firstItem="fBf-J9-E3Y" firstAttribute="leading" secondItem="ecb-jL-xG9" secondAttribute="leading" constant="165" id="c4U-dp-Ui0"/>
                             <constraint firstItem="ecb-jL-xG9" firstAttribute="bottom" secondItem="fBf-J9-E3Y" secondAttribute="bottom" constant="50" id="eui-jf-RXw"/>
                             <constraint firstItem="ecb-jL-xG9" firstAttribute="trailing" secondItem="fBf-J9-E3Y" secondAttribute="trailing" constant="165" id="kEn-w8-wRf"/>

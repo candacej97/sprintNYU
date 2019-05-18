@@ -42,6 +42,7 @@ class GameScene: SKScene {
     var maxCycles = 1000
     var gameEnded = false
     var playerSpeed = 1
+    var boostEnd = 0
 
     var lastTouchLocation: CGPoint?
     let playerRotateRadiansPerSec:CGFloat = 4.0 * .pi
@@ -100,8 +101,6 @@ class GameScene: SKScene {
         // if the game hasn't ended keep running the car obstacle, and randomize it between 5 and 20 seconds
         if !gameEnded {
             run(SKAction.repeatForever( SKAction.sequence([SKAction.run(driveCars), SKAction.wait(forDuration: Double.random(in: 5.0 ..< 10.0))])))
-            
-//            run(SKAction.repeatForever( SKAction.sequence([SKAction.run(moveBoostUp), SKAction.wait(forDuration: Double.random(in: 10.0 ..< 20.0))])))
         }
         
     }
@@ -168,9 +167,7 @@ class GameScene: SKScene {
     
     func startPlayerAnimation() {
         if player.action(forKey: "animation") == nil {
-            player.run(
-                SKAction.repeatForever(defAnim),
-                withKey: "animation")
+            player.run(SKAction.repeatForever(defAnim), withKey: "animation")
         }
     }
     
@@ -205,6 +202,12 @@ class GameScene: SKScene {
             cycles += 1
             
             run(SKAction.repeatForever( SKAction.sequence([SKAction.run(moveBoostUp), SKAction.wait(forDuration: Double.random(in: 10.0 ..< 20.0))])))
+            
+            if cycles == boostEnd {
+                print("\(cycles) cycles")
+                playerSpeed = 1
+                boostEnd = 0
+            }
         }
 
         
@@ -250,7 +253,7 @@ class GameScene: SKScene {
         
         self.enumerateChildNodes(withName: "background", using: ({
             (node, error) in
-            node.position.y -= 2
+            node.position.y -= (2 * CGFloat(self.playerSpeed))
             if node.position.y < -(self.scene?.size.height)! {
                 node.position.y += (self.scene?.size.height)! * 3
             }
@@ -276,7 +279,7 @@ class GameScene: SKScene {
             
             (node, error) in
             node.isHidden = false
-            node.position.y -= 2
+            node.position.y -= (2 * CGFloat(self.playerSpeed))
             if node.position.y < -(self.scene?.size.height)! {
                 node.position.y += (self.scene?.size.height)! * 3
             }
@@ -321,7 +324,7 @@ class GameScene: SKScene {
         self.enumerateChildNodes(withName: "drink", using: ({
             (node, error) in
             node.isHidden = false
-            node.position.y -= 2
+            node.position.y -= (2 * CGFloat(self.playerSpeed))
             if node.position.y < -(self.scene?.size.height)! {
                 node.position.y += (self.scene?.size.height)! * 3
             }
@@ -335,9 +338,11 @@ class GameScene: SKScene {
             
             (node, error) in
             let drink = node as! SKSpriteNode
-            if drink.intersects(self.player){
-                print("player speed increases")
-                self.playerSpeed = Int(Double.random(in: 2.0 ..< 5.0))
+            if drink.intersects(self.player) {
+                self.playerSpeed = self.viewController.getLevel() * 2
+                self.boostEnd = Int.random(in: self.cycles ..< self.maxCycles-100)
+                print("Boosted! x\(self.playerSpeed)")
+                print("Boost end @ \(self.boostEnd) cycles")
             }
             
         }))
@@ -348,6 +353,7 @@ class GameScene: SKScene {
             let pin = node as! SKSpriteNode
             if pin.intersects(self.player){
                 self.gameEnded = true
+                self.drink.removeAllActions()
                 self.stopPlayerAnimation()
                 
                 if self.viewController.getLevel() == 3 {
@@ -365,6 +371,7 @@ class GameScene: SKScene {
             let car = node as! SKSpriteNode
             if car.intersects(self.player){
                 self.gameEnded = true
+                self.drink.removeAllActions()
                 self.stopPlayerAnimation()
                 self.viewController.showLoseAlert()
             }
