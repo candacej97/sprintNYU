@@ -21,8 +21,10 @@ class settingsVC: UIViewController {
     var play_sound = UIImage(named: "sound")
     
     // STATE
-    var music = true
-    var sound = true
+    struct allSound {
+        static var music = true
+        static var sound = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,11 +38,11 @@ class settingsVC: UIViewController {
     
     @IBAction func onMusicBtnPressed(_ sender: Any) {
         // find out if music is on or not
-        if music {
+        if allSound.music {
             // switch image
             musicBtn.setImage(mute_music, for: .normal)
             // switch state of music
-            music = false
+            allSound.music = false
         }
         else {
             musicBtn.setImage(play_music, for: .normal)
@@ -49,11 +51,11 @@ class settingsVC: UIViewController {
     
     @IBAction func onSoundBtnPressed(_ sender: Any) {
         // find out if sound is on or not
-        if sound {
+        if allSound.sound {
             // switch image
             soundBtn.setImage(mute_sound, for: .normal)
             // switch state of sound
-            sound = false
+            allSound.sound = false
         }
         else {
             soundBtn.setImage(play_sound, for: .normal)

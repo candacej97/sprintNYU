@@ -29,6 +29,16 @@ class GameScene: SKScene {
     //create car node
     let drink = SKSpriteNode(imageNamed: "drink")
     
+    // bring in all sound
+    let level_success: SKAction = SKAction.playSoundFileNamed("level_success.mp3", waitForCompletion: true)
+    let level_fail: SKAction = SKAction.playSoundFileNamed("level_fail.mp3", waitForCompletion: true)
+    let level_boost: SKAction = SKAction.playSoundFileNamed("level_boost.mp3", waitForCompletion: true)
+    let level_boostMusic: SKAction = SKAction.playSoundFileNamed("level_boostMusic.mp3", waitForCompletion: true)
+    
+    // set verifiers for playing sound and music
+    var playSound = true
+    var playMusic = true
+    
     var lastUpdateTime: TimeInterval = 0
     var dt: TimeInterval = 0
     let playerMovePointsPerSec: CGFloat = 480.0
@@ -63,7 +73,6 @@ class GameScene: SKScene {
         
         super.init(size: size) // 5
         
-        // change cycle length depending on the level
         self.enumerateChildNodes(withName: "car", using: ({
             
             (node, error) in
@@ -72,6 +81,10 @@ class GameScene: SKScene {
             if self.maxCycles != (1000 % self.viewController.getLevel()){
                 self.maxCycles %= self.viewController.getLevel()
             }
+            
+            self.playMusic = settingsVC.allSound.music
+            self.playSound = settingsVC.allSound.sound
+            
         }))
         
     }
@@ -203,7 +216,12 @@ class GameScene: SKScene {
             
             run(SKAction.repeatForever( SKAction.sequence([SKAction.run(moveBoostUp), SKAction.wait(forDuration: Double.random(in: 10.0 ..< 20.0))])))
             
+            if boostEnd != 0 && playMusic {
+                run(level_boostMusic, withKey: "boosting")
+            }
+            
             if cycles == boostEnd {
+                self.removeAction(forKey: "boosting")
                 print("\(cycles) cycles")
                 playerSpeed = 1
                 boostEnd = 0
@@ -343,6 +361,10 @@ class GameScene: SKScene {
                 self.boostEnd = Int.random(in: self.cycles ..< self.maxCycles-100)
                 print("Boosted! x\(self.playerSpeed)")
                 print("Boost end @ \(self.boostEnd) cycles")
+                
+                if self.playSound {
+                    self.run(self.level_boost)
+                }
             }
             
         }))
@@ -355,6 +377,10 @@ class GameScene: SKScene {
                 self.gameEnded = true
                 self.drink.removeAllActions()
                 self.stopPlayerAnimation()
+                
+                if self.playSound {
+                    self.run(self.level_success)
+                }
                 
                 if self.viewController.getLevel() == 3 {
                     self.viewController.showGameWinningAlert()
@@ -373,6 +399,11 @@ class GameScene: SKScene {
                 self.gameEnded = true
                 self.drink.removeAllActions()
                 self.stopPlayerAnimation()
+                
+                if self.playSound {
+                    self.run(self.level_fail)
+                }
+                
                 self.viewController.showLoseAlert()
             }
             
