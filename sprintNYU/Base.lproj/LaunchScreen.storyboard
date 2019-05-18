@@ -26,7 +26,7 @@
                                 <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
                                 <size key="shadowOffset" width="0.0" height="3"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock-red_1" translatesAutoresizingMaskIntoConstraints="NO" id="mbL-mb-HTs">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock1" translatesAutoresizingMaskIntoConstraints="NO" id="mbL-mb-HTs">
                                 <rect key="frame" x="16" y="161.5" width="343" height="344"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="344" id="Ppy-io-SOA"/>
@@ -53,6 +53,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="clock-red_1" width="300" height="300"/>
+        <image name="clock1" width="300" height="300"/>
     </resources>
 </document>

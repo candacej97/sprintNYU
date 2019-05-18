@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sprintNYU" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L55-hJ-gcN">
-                                <rect key="frame" x="16" y="70" width="343" height="53.5"/>
+                                <rect key="frame" x="16" y="70" width="343" height="54"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="42"/>
                                 <color key="textColor" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -39,9 +39,6 @@
                                     <segue destination="eLc-qe-LO6" kind="show" id="d1k-8w-DDf"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock-red_1" translatesAutoresizingMaskIntoConstraints="NO" id="SHa-pb-M8B">
-                                <rect key="frame" x="37.5" y="183.5" width="300" height="300"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mXs-Tg-JyV">
                                 <rect key="frame" x="150" y="581" width="75" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
@@ -55,24 +52,32 @@
                                     <segue destination="Xzm-i8-IW7" kind="show" id="9wx-ba-M7j"/>
                                 </connections>
                             </button>
+                            <skView contentMode="scaleToFill" sceneName="ClockScene" translatesAutoresizingMaskIntoConstraints="NO" id="ZZs-IV-4Bs">
+                                <rect key="frame" x="62.5" y="208.5" width="250" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="AkV-5h-c3J"/>
+                                    <constraint firstAttribute="height" constant="250" id="YHk-09-Hoi"/>
+                                </constraints>
+                            </skView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="mXs-Tg-JyV" firstAttribute="top" secondItem="wQz-ti-YJN" secondAttribute="bottom" constant="25" id="1Y3-r0-p0O"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wQz-ti-YJN" secondAttribute="trailing" constant="130" id="21B-Q9-Wh2"/>
                             <constraint firstItem="mXs-Tg-JyV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="150" id="4WN-p8-eKr"/>
-                            <constraint firstItem="SHa-pb-M8B" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LYR-lx-Oh5"/>
+                            <constraint firstItem="ZZs-IV-4Bs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="E2z-gH-TjO"/>
                             <constraint firstItem="L55-hJ-gcN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="OHP-D6-7fU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="L55-hJ-gcN" secondAttribute="trailing" constant="16" id="Wg8-3n-geu"/>
                             <constraint firstItem="mXs-Tg-JyV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YxQ-Fs-awA"/>
                             <constraint firstItem="L55-hJ-gcN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="Z8B-FS-ev9"/>
                             <constraint firstItem="wQz-ti-YJN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="129" id="cD9-pI-CoV"/>
-                            <constraint firstItem="SHa-pb-M8B" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="qJM-4w-d7i"/>
+                            <constraint firstItem="ZZs-IV-4Bs" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="dgG-m4-fYn"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="mXs-Tg-JyV" secondAttribute="bottom" constant="50" id="uzE-Qm-pLg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="alarmClockSprite" destination="ZZs-IV-4Bs" id="7MH-W1-sQK"/>
                         <outlet property="playBtn" destination="wQz-ti-YJN" id="dmW-ZV-lob"/>
                         <outlet property="settingsBtn" destination="mXs-Tg-JyV" id="MV3-Jv-aNF"/>
                     </connections>
@@ -176,7 +181,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="clock-red_1" width="300" height="300"/>
         <image name="music" width="512" height="512"/>
         <image name="sound" width="512" height="405"/>
     </resources>

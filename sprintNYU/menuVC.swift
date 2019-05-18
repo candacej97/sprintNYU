@@ -17,9 +17,14 @@ class menuVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // create sprite for the alarm clock TODO
+        let scene = ClockScene(size: alarmClockSprite.bounds.size)
+        alarmClockSprite.showsFPS = true
+        alarmClockSprite.showsNodeCount = true
+        alarmClockSprite.ignoresSiblingOrder = true
+        alarmClockSprite.presentScene(scene)
+        
     }
-
+    
     @IBAction func onSettingsBtnPressed(_ sender: Any) {
         // show the settings view controller
     }

@@ -17,6 +17,8 @@
 		B288B38A226E924100F80754 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B288B388226E924100F80754 /* Main.storyboard */; };
 		B288B38C226E924200F80754 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B288B38B226E924200F80754 /* Assets.xcassets */; };
 		B288B38F226E924200F80754 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B288B38D226E924200F80754 /* LaunchScreen.storyboard */; };
+		B2B31749228F906500174C3D /* ClockScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B31748228F906500174C3D /* ClockScene.swift */; };
+		B2B31777228F9D9000174C3D /* clock-sprite.atlas in Resources */ = {isa = PBXBuildFile; fileRef = B2B31776228F9D9000174C3D /* clock-sprite.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		B288B38B226E924200F80754 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B288B38E226E924200F80754 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B288B390226E924200F80754 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2B31748228F906500174C3D /* ClockScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockScene.swift; sourceTree = "<group>"; };
+		B2B31776228F9D9000174C3D /* clock-sprite.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = "clock-sprite.atlas"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,11 +71,13 @@
 				B288B384226E924100F80754 /* AppDelegate.swift */,
 				B2778B0C2277B59C00A48860 /* GameScene.swift */,
 				B23FD2C322777DE800FF46DE /* gameVC.swift */,
+				B2B31748228F906500174C3D /* ClockScene.swift */,
 				B288B386226E924100F80754 /* menuVC.swift */,
 				B23FD29922712B6E00FF46DE /* settingsVC.swift */,
 				B288B388226E924100F80754 /* Main.storyboard */,
 				B288B38D226E924200F80754 /* LaunchScreen.storyboard */,
 				3C3CF075227FC96D008B7D53 /* MyUtils.swift */,
+				B2B31776228F9D9000174C3D /* clock-sprite.atlas */,
 				B288B38B226E924200F80754 /* Assets.xcassets */,
 				B2778B0E2277B7FC00A48860 /* Stuff */,
 				B288B390226E924200F80754 /* Info.plist */,
@@ -139,6 +145,7 @@
 				B288B38F226E924200F80754 /* LaunchScreen.storyboard in Resources */,
 				B2778B0F2277B7FC00A48860 /* Stuff in Resources */,
 				B288B38C226E924200F80754 /* Assets.xcassets in Resources */,
+				B2B31777228F9D9000174C3D /* clock-sprite.atlas in Resources */,
 				B288B38A226E924100F80754 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,6 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2B31749228F906500174C3D /* ClockScene.swift in Sources */,
 				B2778B0D2277B59C00A48860 /* GameScene.swift in Sources */,
 				B23FD2C422777DE800FF46DE /* gameVC.swift in Sources */,
 				B23FD29A22712B6E00FF46DE /* settingsVC.swift in Sources */,
